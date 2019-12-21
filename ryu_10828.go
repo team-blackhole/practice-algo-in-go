@@ -1,6 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
 
 func main() {
 	/*
@@ -17,10 +23,20 @@ func main() {
 
 	var stack []int
 
+	reader := bufio.NewReader(os.Stdin)
+
+	var order string
+	var x int
+	var line []byte
+
 	for i := 0; i < nOrder; i++ {
-		var order string
-		var x int
-		_,_ = fmt.Scanln(&order, &x)
+		line, _, _ = reader.ReadLine()
+
+		parts := strings.Split(string(line), " ")
+		order = parts[0]
+		if len(parts) > 1 {
+			x, _ = strconv.Atoi(parts[1])
+		}
 
 		switch order {
 		case "push":
